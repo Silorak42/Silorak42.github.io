@@ -1,0 +1,249 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\setlist{itemsep=2pt,topsep=4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\newcommand{\MT}{\mathit{MT}}
+\newcommand{\IZ}{I\mathbb{Z}}
+\newcommand{\talk}[2]{\section*{Talk #1: #2}}
+\newcommand{\refs}[1]{\par\smallskip\textbf{Main references:} #1}
+\newcommand{\suggested}[1]{\par\textbf{Suggested reading:} #1}
+
+\title{Reflection Positivity and Invertible Phases\\[4pt]
+\large Learning seminar, Topology group, Utrecht University}
+\author{}
+\date{Draft, \today}
+
+\begin{document}
+\maketitle
+
+\section*{Overview}
+
+In this learning seminar we work through Freed and Hopkins' paper \cite{FH} together with Freed's CBMS lectures \cite{F}, with an emphasis on the homotopy theory. The guiding result is the Freed--Hopkins classification: deformation classes of reflection positive invertible $n$-dimensional extended topological field theories with symmetry type $H$ are computed by
+\[
+  [\MT H, \Sigma^{n+1}\IZ]_{\mathrm{tors}},
+\]
+the torsion part of the Anderson dual of the Madsen--Tillmann spectrum. We start from bordism and Thom spectra, see how the cobordism hypothesis and the Galatius--Madsen--Tillmann--Weiss theorem turn invertible field theories into maps of spectra, explain how reflection positivity is encoded by $C_2$-equivariant stable homotopy theory, discuss the higher spin-statistics theorem, and end with Adams spectral sequence computations recovering the ten-fold way. Physics is kept to the motivation needed to state the results.
+
+\textbf{Notation for references.} [F, L$n$] refers to Lecture $n$ of \cite{F}, and [FH, \S$n$] to Section $n$ of \cite{FH}.
+
+
+%======================================================================
+\talk{0}{Organization}
+
+Overview of the seminar and the main theorem, discussion of background, distribution of talks. (Short meeting.)
+
+%======================================================================
+\talk{1}{Overview and symmetry types}
+
+\textbf{Goal:} Explain what is being classified and state the main theorem, so that the rest of the seminar has a clear target.
+
+\begin{itemize}
+  \item Motivation: gapped quantum systems, phases as path components of a moduli space, invertible phases. Freed's ``Axiom System'' relating lattice systems, field theories and their low energy limits [F, Introduction], [FH, \S1].
+  \item Quantum mechanics in brief: Hamiltonians, the toric code as an example of a gapped system, Wick rotation in quantum mechanics [F, L2.3, L2.5].
+  \item Wick-rotated relativistic field theory and its symmetry group. Symmetry types as pairs $(H_n, \rho_n)$ with $\rho_n\colon H_n \to O_n$, and their stabilization $H = \operatorname{colim} H_n$ [F, L3.4, L3.6], [FH, \S2.1].
+  \item Examples: $SO$, $Spin$, $Pin^\pm$, $Spin^c$, $Spin \times_{\{\pm1\}} SU_2$, and the symmetry groups relevant for fermionic systems.
+  \item Bordism categories with $H_n$-structure [FH, \S2.2].
+  \item Statement of the main theorem [FH, \S1] and a preview of the computations, e.g.\ the periodic table of topological insulators and superconductors.
+\end{itemize}
+\refs{[F, Introduction, L2, L3], [FH, \S\S1--2].}
+
+%======================================================================
+\talk{2}{Bordism and Thom spectra}
+
+\textbf{Goal:} Set up the homotopy-theoretic objects that classify invertible field theories.
+
+\begin{itemize}
+  \item Classical bordism groups, tangential structures, examples of structures on manifolds [F, L1.1, L1.3].
+  \item The Pontryagin--Thom construction: $\Omega^H_n \cong \pi_n MH$ [F, L1.5].
+  \item Madsen--Tillmann spectra $\MT H_n$ as Thom spectra of $-\rho_n^*(\text{universal bundle})$, the stabilization maps $\Sigma^{-1}\MT H_{n-1} \to \MT H_n$ and the colimit $\MT H$ [F, L6.6], [FH, \S7.1].
+  \item Relation between $\MT H$ and the usual Thom spectrum $MH$ (tangential versus normal structures) [FH, \S7.1]; e.g.\ $\MT SO \simeq MSO$ and $\MT Spin \simeq MSpin$, whereas a $Pin^+$ structure on the tangent bundle is a $Pin^-$ structure on the stable normal bundle.
+  \item Examples of low-dimensional bordism groups: $\Omega^{SO}_*$, $\Omega^{Spin}_*$ in low degrees, $\Omega^{Pin^-}_2 \cong \mathbb{Z}/8$, $\Omega^{Pin^+}_4 \cong \mathbb{Z}/16$.
+\end{itemize}
+\refs{[F, L1, L6.6], [FH, \S7.1].}
+\suggested{\cite{GMTW}.}
+
+%======================================================================
+\talk{3}{Topological field theories and the cobordism hypothesis}
+
+\textbf{Goal:} Introduce (extended) topological field theories and the two results that connect them to homotopy theory.
+
+\begin{itemize}
+  \item Topological field theories as symmetric monoidal functors out of the bordism category; examples in dimensions 1 and 2, super vector spaces as codomain [F, L1.2, L1.4].
+  \item \emph{(optional)} Classification of 1- and 2-dimensional theories via Morse and Cerf theory [F, L4].
+  \item Higher categories and the $(\infty,n)$-category of bordisms $\mathrm{Bord}_n^{H_n}$; extended field theories [F, L5.1--L5.3], [FH, \S5.1].
+  \item The cobordism hypothesis: fully extended theories are determined by fully dualizable objects with $H_n$-fixed point data [F, L5.6].
+  \item The Galatius--Madsen--Tillmann--Weiss theorem: $|\mathrm{Bord}_n^{H_n}| \simeq \Omega^{\infty-1}\MT H_n$ (and its higher categorical analogue, $\Sigma^n \MT H_n$) [F, L6.6, Theorem~6.67]; the 1-dimensional case is worked out in [F, L6.3].
+\end{itemize}
+\refs{[F, L1, L4, L5, L6.3, L6.6], [FH, \S5.1].}
+\suggested{\cite{Fcob} for an overview of the cobordism hypothesis, \cite{L}, \cite{GMTW}.}
+
+%======================================================================
+\talk{4}{Invertible field theories and Anderson duality}
+
+\textbf{Goal:} Show that invertible field theories are maps of spectra, and explain the universal target and the ansatz for deformation classes.
+
+\begin{itemize}
+  \item Picard $\infty$-groupoids and connective spectra [F, L6.1, L6.5], [F, Appendix~A.4].
+  \item Invertible field theories factor through the groupoid completion of the bordism category, hence are maps of spectra $\Sigma^n\MT H_n \to \Sigma^n R$ for a Picard target $R$ [F, L6.2, L6.8], [FH, \S5.2].
+  \item Examples: the Euler theory, theories detected by $\mathbb{Z}/2$-valued Stiefel--Whitney numbers, the Arf theory.
+  \item Brown--Comenetz duality $I\mathbb{C}^\times$ and Anderson duality $\IZ$; the short exact sequence
+  \[0 \to \operatorname{Ext}(\pi_{n}X,\mathbb{Z}) \to [X,\Sigma^{n+1}\IZ] \to \operatorname{Hom}(\pi_{n+1}X,\mathbb{Z}) \to 0\]
+  [F, L6.7], [FH, \S5.3].
+  \item Universal targets, deformation classes of invertible theories, and the passage from $I\mathbb{C}^\times$ to $\IZ$ [F, L6.9, L6.10], [FH, \S5.3].
+  \item Torsion versus free part: topological versus non-topological theories (e.g.\ Chern--Simons-type theories) [FH, \S5.4], [F, L9.3].
+  \item \emph{(optional)} Non-extended invertible theories and Reinhart bordism [F, L6.4]; differential cohomology and the Freed--Hopkins conjecture [F, L9.4].
+\end{itemize}
+\refs{[F, L6, L9], [FH, \S\S5.2--5.4].}
+\suggested{\cite{Fsre}.}
+
+%======================================================================
+\talk{5}{Reflection positivity}
+
+\textbf{Goal:} Explain how unitarity is expressed after Wick rotation, first for non-extended theories.
+
+\begin{itemize}
+  \item Positive definite Hermitian vector spaces and their super versions [F, L7.1].
+  \item Wick-rotated unitarity in quantum mechanics and in Euclidean field theory; Osterwalder--Schrader reflection positivity [F, L7.2--L7.3], [FH, \S\S3.1--3.2].
+  \item The extended symmetry group and the involution on $H_n$-manifolds; duals and opposites [FH, \S3.3, \S\S4.1--4.2].
+  \item Reflection structures on symmetry types and naive positivity; doubles [F, L7.4--L7.5], [FH, \S\S4.3--4.4].
+  \item Introduction to extended reflection structures [F, L7.6].
+  \item \emph{(optional)} The CRT theorem for general symmetry types [FH, Appendix~A].
+\end{itemize}
+\refs{[F, L7], [FH, \S\S3--4, Appendices~A--B].}
+
+%======================================================================
+\talk{6}{Extended positivity and equivariant homotopy theory}
+
+\textbf{Goal:} Encode reflection structures as $C_2$-actions and prove the main theorem.
+
+\begin{itemize}
+  \item Spectra with involution: Borel $C_2$-equivariant stable homotopy theory, real structures, complex conjugation on $I\mathbb{C}^\times$ [F, L8.2--L8.3], [FH, \S\S6.1--6.3].
+  \item Naive positivity and stability: reflection structures on $\MT H$ [F, L8.1], [FH, \S7.2].
+  \item Higher super lines and the target for extended positive theories [F, L8.4].
+  \item Spaces of invertible field theories and extended positivity [F, L8.5], [FH, \S8.1].
+  \item The main theorems and the proof of [FH, Theorem~8.20] [F, L8.6], [FH, \S8.2].
+  \item \emph{(optional)} Transfers [FH, \S8.3].
+\end{itemize}
+\refs{[F, L8], [FH, \S\S6--8].}
+
+%======================================================================
+\talk{7}{The (higher) spin-statistics theorem}
+
+\textbf{Goal:} Explain how reflection positivity forces a relation between spin and statistics, culminating in the higher spin-statistics theorem for invertible theories.
+
+\begin{itemize}
+  \item The classical spin-statistics theorem and the CRT theorem in Lorentz signature; their Wick-rotated counterparts for general symmetry types [FH, Appendix~A].
+  \item The topological spin-statistics theorem of Freed--Hopkins [FH, \S11].
+  \item Spin-statistics for non-extended theories in Atiyah's framework: spin structures on bordisms, super Hilbert spaces, and unitarity \cite{S}.
+  \item The higher spin-statistics theorem: the ``higher spin'' action of the stable orthogonal group $O$ on $\MT H$, extending reflection and spin flip; the ``higher statistics'' action of $O$ on $\IZ$, extending complex conjugation and fermion parity; every unitary invertible field theory intertwines the two \cite{KMS}.
+\end{itemize}
+\refs{[FH, \S11, Appendix~A], \cite{KMS}, \cite{S}.}
+\suggested{\cite{MS} for low-dimensional examples.}
+
+%======================================================================
+\talk{8}{Computations and the ten-fold way}
+
+\textbf{Goal:} Compute the groups in the main theorem for fermionic symmetry types and compare with condensed matter physics.
+
+\begin{itemize}
+  \item Symmetry groups of fermionic systems with scalar internal symmetry, and the ten-fold way [FH, \S9.1], [F, L10.1].
+  \item Free fermions and the long range effective theory, twisted Dirac operators [FH, \S9.2], [F, L10.2].
+  \item The Adams spectral sequence over $\mathcal{A}(1)$: reducing to $ko$-module and $\mathcal{A}(1)$-module computations, cell diagrams and charts [FH, Appendix~D].
+  \item Computations, e.g.\ $\Omega^{Pin^+}_4 \cong \mathbb{Z}/16$ and $\Omega^{Pin^-}_2 \cong \mathbb{Z}/8$, and the tables in [FH, \S10], [F, L10.3].
+  \item Comparison with the periodic table of topological insulators and superconductors; interacting versus free classification [FH, \S9.3], [F, L10.4].
+  \item \emph{(optional)} Outlook: anomalies as invertible field theories one dimension higher, and the anomaly of a free spinor field [F, L11].
+\end{itemize}
+\refs{[F, L10, L11], [FH, \S\S9--10, Appendix~D].}
+\suggested{\cite{BC} for the Adams spectral sequence, \cite{K} and \cite{FM} for the periodic table, \cite{FAn} for anomalies.}
+
+%======================================================================
+\renewcommand{\refname}{Main references}
+\begin{thebibliography}{GMTW09}
+
+\bibitem[FH]{FH}
+D.~S. Freed, M.~J. Hopkins,
+\emph{Reflection positivity and invertible topological phases},
+Geom.\ Topol.\ \textbf{25} (2021).
+\href{https://arxiv.org/abs/1604.06527}{arXiv:1604.06527}.
+
+\bibitem[F]{F}
+D.~S. Freed,
+\emph{Lectures on Field Theory and Topology},
+CBMS Regional Conference Series in Mathematics \textbf{133}, AMS, 2019.
+\href{https://www.ams.org/books/cbms/133}{AMS page};
+\href{https://web.ma.utexas.edu/users/dafr/CBMS133.pdf}{preliminary version}.
+
+\end{thebibliography}
+
+\renewcommand{\refname}{Further references}
+\begin{thebibliography}{GMTW09}
+
+\bibitem[BC]{BC}
+A.~Beaudry, J.~A. Campbell,
+\emph{A guide for computing stable homotopy groups}.
+\href{https://arxiv.org/abs/1801.07530}{arXiv:1801.07530}.
+
+\bibitem[Fan]{FAn}
+D.~S. Freed,
+\emph{Anomalies and invertible field theories}.
+\href{https://arxiv.org/abs/1404.7224}{arXiv:1404.7224}.
+
+\bibitem[Fco]{Fcob}
+D.~S. Freed,
+\emph{The cobordism hypothesis},
+Bull.\ AMS \textbf{50} (2013).
+\href{https://arxiv.org/abs/1210.5100}{arXiv:1210.5100}.
+
+\bibitem[Fsr]{Fsre}
+D.~S. Freed,
+\emph{Short-range entanglement and invertible field theories}.
+\href{https://arxiv.org/abs/1406.7278}{arXiv:1406.7278}.
+
+\bibitem[FM]{FM}
+D.~S. Freed, G.~W. Moore,
+\emph{Twisted equivariant matter},
+Ann.\ Henri Poincar\'e \textbf{14} (2013).
+\href{https://arxiv.org/abs/1208.5055}{arXiv:1208.5055}.
+
+\bibitem[GMTW]{GMTW}
+S.~Galatius, I.~Madsen, U.~Tillmann, M.~Weiss,
+\emph{The homotopy type of the cobordism category},
+Acta Math.\ \textbf{202} (2009).
+\href{https://arxiv.org/abs/math/0605249}{arXiv:math/0605249}.
+
+\bibitem[K]{K}
+A.~Kitaev,
+\emph{Periodic table for topological insulators and superconductors}.
+\href{https://arxiv.org/abs/0901.2686}{arXiv:0901.2686}.
+
+\bibitem[KMS]{KMS}
+C.~Krulewski, L.~M\"uller, L.~Stehouwer,
+\emph{A higher spin-statistics theorem for invertible quantum field theories},
+Comm.\ Math.\ Phys.\ \textbf{406} (2025), 230.
+\href{https://arxiv.org/abs/2408.03981}{arXiv:2408.03981}.
+
+\bibitem[L]{L}
+J.~Lurie,
+\emph{On the classification of topological field theories}.
+\href{https://arxiv.org/abs/0905.0465}{arXiv:0905.0465}.
+
+\bibitem[MS]{MS}
+L.~M\"uller, L.~Stehouwer,
+\emph{Reflection structures and spin statistics in low dimensions}.
+\href{https://arxiv.org/abs/2301.06664}{arXiv:2301.06664}.
+
+\bibitem[S]{S}
+L.~Stehouwer,
+\emph{The spin-statistics theorem for topological quantum field theories}.
+\href{https://arxiv.org/abs/2403.02282}{arXiv:2403.02282}.
+
+\end{thebibliography}
+
+\end{document}
