@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Elliptic Cohomology and Friends</title>
   <style>
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body { max-width: 900px; margin: 0 auto; padding: 0 16px 40px; font-family: sans-serif; line-height: 1.5; }
     header { text-align: center; padding: 24px 0 8px; }
     header h1 { margin-bottom: 4px; }
@@ -16,14 +17,19 @@
     .map { width: 100%; aspect-ratio: 16 / 9; border: 0; }
     .schedule-wrap { overflow-x: auto; }
     /* One grid row = 5 minutes, so block height is proportional to duration. */
-    .schedule { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: auto repeat(96, 9px); column-gap: 4px; min-width: 640px; font-size: 0.9em; line-height: 1.25; }
+    .schedule { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-template-rows: auto repeat(96, minmax(9px, auto)); column-gap: 4px; min-width: 640px; font-size: 0.9em; line-height: 1.25; }
     .schedule .day { background: #f0f0f0; border: 1px solid #ccc; padding: 6px 8px; font-weight: bold; margin-bottom: 4px; }
-    .schedule .slot { background: #fff; border: 1px solid #ccc; padding: 3px 6px; margin: 1px 0; overflow: hidden; }
+    .schedule .slot { background: #fff; border: 1px solid #ccc; padding: 3px 6px; margin: 1px 0; overflow-wrap: break-word; hyphens: auto; }
     .schedule .short { font-size: 0.85em; line-height: 1.15; padding: 1px 6px; }
     .schedule .t { font-weight: bold; white-space: nowrap; }
     .schedule .brk { background: #f7f7f7; color: #555; font-style: italic; }
     .schedule .series { background: #d4e3f7; }
     .schedule .special { background: #f7e3bb; }
+    /* Rows can grow when text needs more room (narrow screens), so nothing is cut off. */
+    @media (max-width: 600px) {
+      .schedule { font-size: 0.8em; }
+      .schedule .slot, .schedule .day { padding: 2px 4px; }
+    }
     .talks li { margin-bottom: 10px; }
   </style>
 </head>
